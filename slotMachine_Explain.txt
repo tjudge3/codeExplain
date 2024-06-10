@@ -1,0 +1,154 @@
+Tom Judge
+6/10/2024
+
+--------------
+HTML Page
+--------------
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">  - This is how we're pulling in the various icons
+https://fonts.google.com/icons - for the icons
+https://github.com/google/material-design-icons - For more information on the icons/fonts themselves
+
+--------------
+JS
+--------------
+
+For the javascript, it was easier just to display the block of code and then explain it under neath. 
+
+
+    let icons = ['savings', 'favorite', 'attach_money', 'bolt', 'star'];
+    let colors = ['green', 'white', 'silver'];
+    let snd = new Audio("sounds/slot.wav");
+
+
+let icons = ['savings', 'favorite', 'attach_money', 'bolt', 'star']; // This is our icons array, the names match up to icons in Material+Icons from the goog
+
+let colors = ['green', 'white', 'silver']; // This is our colors array, it will be important later when we doing the styling
+
+let snd = new Audio("sounds/slot.wav"); // This is just for creating our sound variable that we'll use in the code
+
+
+
+Spin Function
+
+    function spin() {
+        let tally = [0, 0, 0, 0, 0]; /* add later */ 
+        let iLen = icons.length; 
+        let slot = document.getElementById("divSlot");
+        winner(false);
+        snd.play();
+        slot.querySelectorAll('*').forEach(n => n.remove());
+
+
+
+function spin() { // Creates the function called spin
+
+let tally = [0, 0, 0, 0, 0]; /* add later */ This is the array for the count, I don't know what they comment is add later, but this initialized the array aswith zeros
+
+let iLen = icons.length; // Here we are defining the icon length iLen
+
+let slot = document.getElementById("divSlot"); // Not a querySelector? But this is where we are targeting our element in the HTML
+
+winner(false); // We're starting off by essentially saying winner = false. Well, in js, it's probably winner === false. Let's just say winner is false (not true)
+
+snd.play(); // Here we are playing the sound that we defined earlier
+
+slot.querySelectorAll('*').forEach(n => n.remove());  // This one threw me for a loop (pun intended) at first. This is removing an element from the array. But it's doing it as it's being iterated through/over. 
+
+
+        for (let x = 0; x < iLen; x++) {
+            let i = document.createElement("i");
+            let rnd = Math.floor((Math.random() * 5));
+            let rndColor = Math.floor((Math.random() * colors.length));
+            i.classList = "material-icons iSlot";
+            i.textContent = icons[rnd];
+            i.style.color = colors[rndColor];
+            slot.appendChild(i);
+            tally[rnd] += 1; /* add later */ // 
+        }
+
+// Creates something like this : <i class="material-icons iSlot" style="color: white;">attach_money</i> 
+
+
+for (let x = 1; x <= iLen; x++) { // This is the given code
+
+for (let x = 0; x < iLen; x++) {  // This code works too though, it just sets the initial x to zero and so we can remove the the "=". 
+
+let i = document.createElement("i"); // Here we are creating the "i class" or "icon class" 
+
+let rnd = Math.floor((Math.random() * 5)); // Here we are getting a random number. The random number will be used for picking the icon itself. Since it's Math.floor it means we round down. 
+
+let rndColor = Math.floor((Math.random() * colors.length)); // Here we are getting the random color, we are limiting our number of potential random colors to the number of colors present in the colors array.  
+
+i.classList = "material-icons iSlot"; // Here we are inserting the classes which are materials-icons and iSlot -- material-icons is from the google fonts and iSlot is the one was created here for this
+
+i.textContent = icons[rnd]; // Here we are picking the icon, from the icon array, at random using rnd above. 
+
+i.style.color = colors[rndColor]; // Just like the above line, we are picking the color for the style to be used, at random. 
+
+slot.appendChild(i); // This "belongs" to the tallying, each time an icon is chosen it's "appended" to the slot
+
+tally[rnd] += 1; /* add later */ // When an icon is appended it increments by one 
+
+
+        setTimeout(function() {
+            checkForWin(tally);
+        }, 2000);
+
+
+/* For the code above we have to look at the code below. More specifically, this code is used when there is a win condition */
+
+
+    function checkForWin(w) {
+        let wLen = w.length - 1;
+
+        for (let x = 0; x <= wLen; ++x) {
+            if (w[x] > 2) {
+                winner(true);
+                return;
+            }
+        }
+    }
+
+
+function checkForWin(w) { // The name of the function, and we're passing W in, w is the parameter that represents the tally array
+
+let wLen = w.length - 1; // Here we get the index of the last element
+
+for (let x = 0; x <= wLen; ++x) { // the for loop which gets the wLen from above 
+
+if (w[x] > 2) { // This is how we get the win condition, it accesses X place in the W array. 
+
+winner(true); // If X place in the W array above is more than 2 (e.g. three), then it's a winner. And we call the winner function (below)
+
+return;
+            }
+        }
+    }
+
+
+
+    function winner(blnWin) {
+        let winner = document.querySelector("#winner");
+        winner.style.display = (blnWin == true ? 'block' : 'none');
+    }
+
+
+
+
+function winner(blnWin) { // Name of the function, bln for boolean. The boolean is true or false which we are using for displaying the h1 text
+
+let winner = document.querySelector("#winner"); //This targets the HTML
+
+winner.style.display = (blnWin == true ? 'block' : 'none'); // This "writes" the style to the HTML. When there is a winner it changes the h1 from none to block. 
+    }
+
+
+-----------------------------------
+
+If I was to adapt this, and use this code or the idea of it for the poker game, I'd have to use another icon set. 
+
+There are no google icons for spade and heart, so not that I fully understand the code, and how it works, I could switch to using bootstrap icons, since they do have the icons I need. 
+
+https://icons.getbootstrap.com/assets/font/bootstrap-icons.min.css
+
+suit-spade, suit-diamond, suit-heart, suit-club

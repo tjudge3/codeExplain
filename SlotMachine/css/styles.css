@@ -1,0 +1,85 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+p {
+    height: 200px;
+    background-color: black;
+    z-index: 1;
+    margin: 0;
+    text-align: center;
+}
+
+button {
+    padding: 4px 15px;
+    color: white;
+    background-color: green;
+    font-size: 50px;
+    text-transform: uppercase;
+    transition: 1.3s;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#winner {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    font-size: 3em;
+    text-align: center;
+}
+
+#divSlot {
+    width: 87%;
+    margin: 0% auto;
+    border-top: 5px solid #ccc;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.iSlot {
+    position: absolute;
+    width: 16%;
+    font-size: 16vw;
+    padding: 1%;
+    z-index: -2;
+    color: green;
+}
+
+.iSlot:nth-child(1) {
+    animation: 1s roll ease-in;
+}
+
+.iSlot:nth-child(2) {
+    margin-left: 17%;
+    animation: 1.5s roll ease-in;
+}
+
+.iSlot:nth-child(3) {
+    margin-left: 34%;
+    animation: 2s roll ease-in;
+}
+
+.iSlot:nth-child(4) {
+    margin-left: 51%;
+    animation: 2.5s roll ease-in;
+}
+
+.iSlot:nth-child(5) {
+    margin-left: 68%;
+    animation: 3s roll ease-in;
+}
+
+@keyframes roll {
+    from {
+        opacity: 0;
+        margin-top: -300px;
+    }
+    to {
+        transform: scale(1);
+    }
+}

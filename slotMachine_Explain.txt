@@ -12,7 +12,7 @@ https://github.com/google/material-design-icons - For more information on the ic
 JS
 --------------
 
-For the javascript, it was easier just to display the block of code and then explain it under neath. 
+For the javascript, it was easier just to display the block of code and then explain it underneath. 
 
 
     let icons = ['savings', 'favorite', 'attach_money', 'bolt', 'star'];
@@ -20,7 +20,7 @@ For the javascript, it was easier just to display the block of code and then exp
     let snd = new Audio("sounds/slot.wav");
 
 
-let icons = ['savings', 'favorite', 'attach_money', 'bolt', 'star']; // This is our icons array, the names match up to icons in Material+Icons from the goog
+let icons = ['savings', 'favorite', 'attach_money', 'bolt', 'star']; // This is our icons array, the names match up to icons in Material+Icons from google
 
 let colors = ['green', 'white', 'silver']; // This is our colors array, it will be important later when we doing the styling
 
@@ -42,7 +42,7 @@ Spin Function
 
 function spin() { // Creates the function called spin
 
-let tally = [0, 0, 0, 0, 0]; /* add later */ This is the array for the count, I don't know what they comment is add later, but this initialized the array aswith zeros
+let tally = [0, 0, 0, 0, 0]; /* add later */ This is the array for the count, I don't know what the comment is "add later", but this initialized the array with zeros
 
 let iLen = icons.length; // Here we are defining the icon length iLen
 
@@ -68,10 +68,11 @@ slot.querySelectorAll('*').forEach(n => n.remove());  // This one threw me for a
 
 // Creates something like this : <i class="material-icons iSlot" style="color: white;">attach_money</i> 
 
-
-for (let x = 1; x <= iLen; x++) { // This is the given code
+-
+for (let x = 1; x <= iLen; x++) { // This is the given code in the example
 
 for (let x = 0; x < iLen; x++) {  // This code works too though, it just sets the initial x to zero and so we can remove the the "=". 
+-
 
 let i = document.createElement("i"); // Here we are creating the "i class" or "icon class" 
 
@@ -94,6 +95,11 @@ tally[rnd] += 1; /* add later */ // When an icon is appended it increments by on
             checkForWin(tally);
         }, 2000);
 
+setTimeout(function() { // This is the function that "resets" the slot machine after the timeout time has elapsed
+
+checkForWin(tally); // Here we check if there is a win
+
+}, 2000); // Here we set the timeout time
 
 /* For the code above we have to look at the code below. More specifically, this code is used when there is a win condition */
 
@@ -116,7 +122,7 @@ let wLen = w.length - 1; // Here we get the index of the last element
 
 for (let x = 0; x <= wLen; ++x) { // the for loop which gets the wLen from above 
 
-if (w[x] > 2) { // This is how we get the win condition, it accesses X place in the W array. 
+if (w[x] > 2) { // This is how we get the win condition, it accesses "X place" in the W array. 
 
 winner(true); // If X place in the W array above is more than 2 (e.g. three), then it's a winner. And we call the winner function (below)
 
@@ -147,7 +153,7 @@ winner.style.display = (blnWin == true ? 'block' : 'none'); // This "writes" the
 
 If I was to adapt this, and use this code or the idea of it for the poker game, I'd have to use another icon set. 
 
-There are no google icons for spade and heart, so not that I fully understand the code, and how it works, I could switch to using bootstrap icons, since they do have the icons I need. 
+There are no google icons for spade and heart, so now that I fully understand the code, and how it works, I could switch to using bootstrap icons, since they do have the icons I need. 
 
 https://icons.getbootstrap.com/assets/font/bootstrap-icons.min.css
 
